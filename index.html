@@ -5,80 +5,109 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Our Christmas List</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#eef2ee">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='12' width='24' height='17' rx='2' fill='%23a8233a'/%3E%3Crect x='2' y='8' width='28' height='6' rx='2' fill='%23c43a50'/%3E%3Crect x='14' y='8' width='4' height='21' fill='%23d8ae55'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#123d30">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='12' width='24' height='17' rx='2' fill='%23b3202e'/%3E%3Crect x='2' y='8' width='28' height='6' rx='2' fill='%23d2343f'/%3E%3Crect x='14' y='8' width='4' height='21' fill='%23e3b453'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: one narrow column of gift-tag sections, a sticky view switch, inline editing. */
+/* Layout: a pine-green header band under a string of fairy lights with falling snow,
+   then one column of gift-tag sections on a frosty page, each list wrapped in a ribbon. */
 :root {
-  --bg: #eef2ee; --surface: #ffffff; --ink: #1b2a23; --muted: #5b6b63; --line: #d6dfd8;
-  --accent: #a8233a; --accent-ink: #ffffff; --gold: #a87b22; --soft: #e3ebe5; --done: #2f6b4f;
-  --p-tim: #2f6b4f; --p-sue: #7a3f74; --p-lucy: #b0313f; --p-james: #2c5a8c; --p-albie: #a2741b;
-  --shadow: 0 1px 2px rgba(27,42,35,.06), 0 4px 14px rgba(27,42,35,.05);
+  --pine: #123d30; --pine-deep: #0b2a21; --snow: #f3f6f4; --frost: #e4ece8;
+  --surface: #ffffff; --ink: #1c2622; --muted: #5d6a64; --line: #d9e2dd;
+  --berry: #b3202e; --berry-ink: #ffffff; --gold: #c99a3a; --gold-soft: #f1dfb3;
+  --done: #2c7451; --kraft: #e7d3b0; --kraft-ink: #4a3722;
+  --chip-on: #123d30; --chip-on-ink: #fdf8ee;
+  --p-tim: #1f6b4a; --p-sue: #7b2d5f; --p-lucy: #b3202e; --p-james: #234b7a; --p-albie: #9a6b12;
+  --shadow: 0 1px 2px rgba(11,42,33,.08), 0 6px 18px rgba(11,42,33,.07);
+  --font-festive: "Mountains of Christmas", "Young Serif", Georgia, serif;
   --font-display: "Young Serif", Georgia, "Times New Roman", serif;
   --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0f1713; --surface: #16211c; --ink: #e6ede8; --muted: #98aaa1; --line: #2a3832;
-    --accent: #e0596d; --accent-ink: #1a0d10; --gold: #d8ae55; --soft: #1d2a24; --done: #6fbf94;
-    --p-tim: #6fbf94; --p-sue: #c88cc1; --p-lucy: #ec7a86; --p-james: #7fb0e3; --p-albie: #dcb15a;
-    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.25);
+    --pine: #0f3328; --pine-deep: #081d17; --snow: #0c1714; --frost: #15241f;
+    --surface: #13211c; --ink: #eaf0ec; --muted: #9db0a7; --line: #26382f;
+    --berry: #e2525d; --berry-ink: #1a0a0c; --gold: #e3b453; --gold-soft: #3a2f17;
+    --done: #6cc596; --kraft: #c9ae84; --kraft-ink: #2f2214;
+    --chip-on: #e3b453; --chip-on-ink: #241a06;
+    --p-tim: #5cbf8c; --p-sue: #cf86b6; --p-lucy: #ee7a83; --p-james: #86ade0; --p-albie: #e1b45a;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 6px 18px rgba(0,0,0,.3);
     color-scheme: dark;
   }
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0; background: var(--bg); color: var(--ink);
-  font-family: var(--font-body); font-size: 16px; line-height: 1.45;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
-}
+body { margin: 0; background: var(--snow); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.45; padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
 [hidden] { display: none !important; }
+.gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .wrap { max-width: 640px; margin: 0 auto; }
 button, input, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
-header.top { padding-block: 32px 8px; display: grid; gap: 6px; }
-.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); font-variant-numeric: tabular-nums; }
-h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(32px, 8vw, 44px); line-height: 1.05; margin: 0; text-wrap: balance; }
-.lede { margin: 4px 0 0; color: var(--muted); max-width: 52ch; }
+/* ---------- Header band ---------- */
+.band { position: relative; overflow: hidden; color: #fdf8ee; padding-top: env(safe-area-inset-top, 0px);
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,.07), transparent 60%),
+    linear-gradient(180deg, var(--pine) 0%, var(--pine-deep) 100%); }
+#snow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+#lights { display: block; width: 100%; height: 46px; position: relative; }
+#lights .wire { fill: none; stroke: #2a1e14; stroke-width: 2; }
+#lights .cap { fill: #6b6150; }
+#lights .bulb { animation: twinkle 2.6s ease-in-out infinite; }
+@keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+.band header { position: relative; padding-block: 8px 34px; display: grid; gap: 10px; justify-items: start; }
+.sleeps { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: #2a1d06; font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; padding: 6px 14px 6px 12px; border-radius: 3px; font-variant-numeric: tabular-nums; clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 50%, 100% 100%, 0 100%); padding-right: 20px; }
+.sleeps b { font-size: 15px; }
+h1 { font-family: var(--font-festive); font-weight: 700; font-size: clamp(44px, 12vw, 68px); line-height: .95; margin: 0; letter-spacing: .01em; text-wrap: balance; text-shadow: 0 2px 0 rgba(0,0,0,.25); }
+.lede { margin: 0; color: rgba(253,248,238,.82); max-width: min(50ch, calc(100% - 84px)); }
+.holly { position: absolute; right: 0; bottom: 18px; width: 92px; height: 70px; opacity: .95; }
+@media (max-width: 480px) { .holly { width: 64px; height: 50px; bottom: 26px; } }
+.band::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 18px; background: var(--snow);
+  -webkit-mask: radial-gradient(14px 10px at 14px 0, transparent 98%, #000) repeat-x 0 0 / 28px 18px;
+          mask: radial-gradient(14px 10px at 14px 0, transparent 98%, #000) repeat-x 0 0 / 28px 18px; }
 
-.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 12px; display: grid; gap: 10px; border-bottom: 1px solid var(--line); }
-.seg { display: inline-grid; grid-template-columns: 1fr 1fr; background: var(--soft); border-radius: 999px; padding: 3px; width: 100%; max-width: 360px; }
+/* ---------- Sticky controls ---------- */
+.bar { position: sticky; top: 0; z-index: 5; background: var(--snow); padding-top: env(safe-area-inset-top, 0px); }
+.bar .wrap { padding-block: 12px; display: grid; gap: 10px; border-bottom: 1px solid var(--line); }
+.seg { display: inline-grid; grid-template-columns: 1fr 1fr; background: var(--frost); border-radius: 999px; padding: 3px; width: 100%; max-width: 360px; }
 .seg button { border: 0; background: transparent; border-radius: 999px; padding: 8px 12px; font-weight: 600; font-size: 14px; color: var(--muted); }
-.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+.seg button[aria-pressed="true"] { background: var(--berry); color: var(--berry-ink); box-shadow: var(--shadow); }
 .chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
 .chips::-webkit-scrollbar { display: none; }
 .chip { flex: none; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 500; display: inline-flex; gap: 6px; align-items: center; }
-.chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--muted)); }
-.chip[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+.chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--gold)); }
+.chip[aria-pressed="true"] { border-color: var(--chip-on); background: var(--chip-on); color: var(--chip-on-ink); }
 .chip .n { font-variant-numeric: tabular-nums; opacity: .7; font-size: 13px; }
 
-.notice { margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: var(--soft); color: var(--muted); font-size: 14px; }
-.notice strong { color: var(--ink); font-weight: 600; }
-.notice button { border: 0; background: transparent; color: var(--accent); font-weight: 700; padding: 0 4px; }
+.notice { margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: var(--gold-soft); color: var(--ink); font-size: 14px; }
+.notice strong { font-weight: 700; }
+.notice button { border: 0; background: transparent; color: var(--berry); font-weight: 700; padding: 0 4px; }
 
-main { display: grid; gap: 28px; padding-top: 24px; }
-section.person { display: grid; gap: 10px; }
-.tag-head { display: flex; align-items: center; gap: 12px; }
-.tag { --c: var(--muted); position: relative; display: inline-flex; align-items: center; background: var(--c); color: var(--bg); font-family: var(--font-display); font-weight: 400; font-size: 22px; line-height: 1; margin: 0; padding: 8px 16px 9px 30px; clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 50%); border-radius: 0 6px 6px 0; }
-.tag::before { content: ""; position: absolute; left: 13px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--bg); }
-.count { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+/* ---------- Sections ---------- */
+main { display: grid; gap: 34px; padding-top: 26px; }
+section.person { display: grid; gap: 12px; }
+.tag-head { display: flex; align-items: center; gap: 0; }
+.string { width: 26px; height: 2px; background: repeating-linear-gradient(90deg, var(--kraft-ink) 0 3px, transparent 3px 5px); opacity: .5; flex: none; }
+.tag { position: relative; display: inline-flex; align-items: center; gap: 10px; margin: 0; background: var(--kraft); color: var(--kraft-ink);
+  font-family: var(--font-display); font-weight: 400; font-size: 21px; line-height: 1; padding: 9px 18px 10px 32px;
+  clip-path: polygon(16px 0, 100% 0, 100% 100%, 16px 100%, 0 50%); border-radius: 0 6px 6px 0; box-shadow: inset 0 0 0 1px rgba(74,55,34,.12); }
+.tag::before { content: ""; position: absolute; left: 13px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: var(--snow); box-shadow: inset 0 0 0 1.5px rgba(74,55,34,.35); }
+.tag .swatch { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+.count { margin-left: 12px; color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
 
-ul.items { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-li.item { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: start; padding: 12px 12px 12px 14px; border-top: 1px solid var(--line); }
+.parcel { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.parcel::before { content: ""; display: block; height: 6px; background: repeating-linear-gradient(-45deg, var(--berry) 0 8px, var(--surface) 8px 16px); opacity: .9; }
+ul.items { list-style: none; margin: 0; padding: 0; }
+li.item { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: start; padding: 13px 12px 13px 14px; border-top: 1px solid var(--line); }
 li.item:first-child { border-top: 0; }
-.tick { width: 26px; height: 26px; margin-top: 1px; border-radius: 7px; border: 2px solid var(--line); background: var(--surface); display: grid; place-items: center; padding: 0; transition: border-color .15s, background .15s; }
+.tick { width: 28px; height: 28px; margin-top: 0; border-radius: 8px; border: 2px solid var(--line); background: var(--surface); display: grid; place-items: center; padding: 0; transition: border-color .15s, background .15s, transform .15s; }
 .tick:hover { border-color: var(--done); }
-.tick svg { width: 14px; height: 14px; stroke: var(--bg); opacity: 0; }
+.tick:active { transform: scale(.92); }
+.tick svg { width: 15px; height: 15px; stroke: #fff; opacity: 0; }
 .item.bought .tick { background: var(--done); border-color: var(--done); }
 .item.bought .tick svg { opacity: 1; }
 .item.saving { opacity: .6; }
@@ -87,57 +116,80 @@ li.item:first-child { border-top: 0; }
 .item.bought .title { text-decoration: line-through; text-decoration-color: var(--muted); color: var(--muted); }
 .note { color: var(--muted); font-size: 14px; overflow-wrap: anywhere; white-space: pre-line; }
 .meta { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; font-size: 13px; margin-top: 2px; }
-.meta a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+.meta a { color: var(--berry); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
 .meta a:hover { text-decoration: underline; }
-.badge { font-size: 12px; font-weight: 600; color: var(--done); letter-spacing: .02em; }
+.badge { font-size: 12px; font-weight: 700; color: var(--done); letter-spacing: .02em; }
 .more { border: 0; background: transparent; color: var(--muted); padding: 4px 6px; border-radius: 6px; font-size: 13px; font-weight: 600; }
-.more:hover { background: var(--soft); color: var(--ink); }
-.empty { padding: 16px 14px; color: var(--muted); font-size: 14px; }
+.more:hover { background: var(--frost); color: var(--ink); }
+.empty { padding: 18px 14px; color: var(--muted); font-size: 14px; display: flex; gap: 10px; align-items: center; }
+.empty svg { width: 22px; height: 22px; flex: none; }
 
-.add { justify-self: start; border: 1px dashed var(--line); background: transparent; color: var(--ink); border-radius: 10px; padding: 9px 14px; font-weight: 600; font-size: 14px; display: inline-flex; gap: 8px; align-items: center; }
-.add:hover { border-color: var(--c, var(--accent)); color: var(--c, var(--accent)); }
+.add { justify-self: start; border: 1.5px dashed var(--line); background: transparent; color: var(--ink); border-radius: 10px; padding: 9px 14px; font-weight: 600; font-size: 14px; display: inline-flex; gap: 8px; align-items: center; }
+.add:hover { border-color: var(--c, var(--berry)); color: var(--c, var(--berry)); }
 .add .plus { font-size: 18px; line-height: 1; }
 
 form.editor { display: grid; gap: 10px; padding: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
 li.item form.editor { grid-column: 1 / -1; border: 0; box-shadow: none; padding: 0; background: transparent; }
 .field { display: grid; gap: 4px; }
 .field label { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-.field input, .field textarea { width: 100%; border: 1px solid var(--line); background: var(--bg); border-radius: 8px; padding: 9px 10px; font-size: 16px; }
+.field input, .field textarea { width: 100%; border: 1px solid var(--line); background: var(--snow); border-radius: 8px; padding: 9px 10px; font-size: 16px; }
 .field textarea { resize: vertical; min-height: 44px; }
 .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .btn { border: 0; border-radius: 8px; padding: 9px 16px; font-weight: 600; font-size: 14px; }
-.btn.primary { background: var(--accent); color: var(--accent-ink); }
-.btn.ghost { background: var(--soft); color: var(--ink); }
-.btn.danger { background: transparent; color: var(--accent); padding-inline: 8px; margin-left: auto; }
+.btn.primary { background: var(--berry); color: var(--berry-ink); }
+.btn.ghost { background: var(--frost); color: var(--ink); }
+.btn.danger { background: transparent; color: var(--berry); padding-inline: 8px; margin-left: auto; }
 .confirm { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; }
 .confirm .btn.danger { margin-left: 0; }
 
-.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--bg); border-radius: 12px; padding: 10px 10px 10px 16px; display: flex; gap: 12px; align-items: center; font-size: 14px; box-shadow: var(--shadow); max-width: calc(100% - 32px); z-index: 20; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--pine); color: #fdf8ee; border-radius: 12px; padding: 10px 10px 10px 14px; display: flex; gap: 10px; align-items: center; font-size: 14px; box-shadow: var(--shadow); max-width: calc(100% - 32px); z-index: 20; }
+.toast svg { width: 18px; height: 18px; flex: none; }
 .toast button { border: 0; background: transparent; color: var(--gold); font-weight: 700; padding: 6px 8px; border-radius: 6px; }
 .status { padding: 24px 0; color: var(--muted); text-align: center; }
-footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
-@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+footer { margin-top: 44px; color: var(--muted); font-size: 13px; display: flex; gap: 8px; align-items: center; }
+footer svg { width: 20px; height: 20px; flex: none; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <div class="eyebrow" id="countdown">Christmas 2026</div>
-    <h1>Our Christmas List</h1>
-    <p class="lede">Tick a gift once you've bought it. It drops off the list for everyone, so nobody buys the same thing twice.</p>
-  </header>
+<div class="band">
+  <canvas id="snow" aria-hidden="true"></canvas>
+  <svg id="lights" aria-hidden="true"></svg>
+  <div class="gutter">
+    <div class="wrap">
+      <header>
+        <div class="sleeps" id="countdown">Christmas 2026</div>
+        <h1>Our Christmas List</h1>
+        <p class="lede">Tick a gift once you've bought it. It vanishes from the list for everyone, so nobody wraps the same thing twice.</p>
+      </header>
+    </div>
+  </div>
+  <svg class="holly" viewBox="0 0 92 70" aria-hidden="true">
+    <path d="M46 40 C30 22 12 30 4 18 C10 34 2 40 10 50 C18 44 30 52 34 46 C28 40 40 42 46 40Z" fill="#2c7a4f"/>
+    <path d="M46 40 C30 22 12 30 4 18" fill="none" stroke="#1d5638" stroke-width="1.5"/>
+    <path d="M50 40 C62 18 80 24 90 10 C86 28 92 34 86 46 C78 40 66 50 62 44 C68 38 56 42 50 40Z" fill="#358a5c"/>
+    <path d="M50 40 C62 18 80 24 90 10" fill="none" stroke="#1d5638" stroke-width="1.5"/>
+    <circle cx="44" cy="46" r="7" fill="#c8202f"/><circle cx="54" cy="48" r="6.5" fill="#d62c3a"/><circle cx="48" cy="56" r="6.5" fill="#b81b29"/>
+    <circle cx="42" cy="44" r="2" fill="#fff" opacity=".55"/><circle cx="52" cy="46" r="1.8" fill="#fff" opacity=".55"/>
+  </svg>
+</div>
 
-  <div class="bar">
+<div class="bar gutter">
+  <div class="wrap">
     <div class="seg" role="group" aria-label="Which gifts to show">
       <button id="view-left" aria-pressed="true">Still to buy</button>
       <button id="view-all" aria-pressed="false">Full list</button>
     </div>
     <div class="chips" id="chips" role="group" aria-label="Whose list"></div>
   </div>
+</div>
 
-  <div id="notices"></div>
-  <main id="main"><div class="status">Loading the list…</div></main>
-  <footer id="footer"></footer>
+<div class="gutter">
+  <div class="wrap">
+    <div id="notices"></div>
+    <main id="main"><div class="status">Loading the list…</div></main>
+    <footer id="footer"></footer>
+  </div>
 </div>
 <div id="toast" class="toast" role="status" hidden></div>
 
@@ -162,6 +214,8 @@ const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); 
 const keyOf = (name) => String(name || "").trim().toLowerCase();
 const nameOf = (key) => (PEOPLE.find(p => p.key === key) || {}).name || key;
 const CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>';
+const GIFT = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="10" width="18" height="11" rx="1.5" fill="var(--berry)"/><rect x="2" y="7" width="20" height="4" rx="1" fill="var(--berry)" opacity=".85"/><rect x="11" y="7" width="2.4" height="14" fill="var(--gold)"/><path d="M12 7c-2-4-6-4-6-1.5S10 7 12 7zm0 0c2-4 6-4 6-1.5S14 7 12 7z" fill="none" stroke="var(--gold)" stroke-width="1.6"/></svg>';
+const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.7 6 6.5.6-4.9 4.3 1.5 6.4L12 16.5 6.2 19.8l1.5-6.4L2.8 9.1l6.5-.6z" fill="var(--gold)"/></svg>';
 
 try { const v = localStorage.getItem("xmas-view"); if (v === "all" || v === "left") S.view = v; } catch {}
 try { const w = localStorage.getItem("xmas-who"); if (w && (w === "all" || PEOPLE.some(p => p.key === w))) S.who = w; } catch {}
@@ -170,10 +224,59 @@ try { const w = localStorage.getItem("xmas-who"); if (w && (w === "all" || PEOPL
   const now = new Date(); const xmas = new Date(now.getFullYear(), 11, 25);
   const days = Math.round((xmas - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000);
   const el = $("countdown");
-  if (days > 1) el.textContent = `${days} days to Christmas`;
-  else if (days === 1) el.textContent = "Christmas Eve";
-  else if (days === 0) el.textContent = "Happy Christmas";
+  if (days > 1) el.innerHTML = `<b>${days}</b> sleeps to Christmas`;
+  else if (days === 1) el.textContent = "One more sleep!";
+  else if (days === 0) el.textContent = "Happy Christmas!";
   else el.textContent = `Christmas ${now.getFullYear()}`;
+})();
+
+// ---------- Fairy lights ----------
+const reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+function drawLights() {
+  const svg = $("lights"); const w = svg.clientWidth || window.innerWidth; const h = 46;
+  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  const swags = Math.max(3, Math.round(w / 180)), seg = w / swags, sag = 16;
+  let d = `M0 4`;
+  for (let i = 0; i < swags; i++) d += ` Q${seg * i + seg / 2} ${4 + sag * 2} ${seg * (i + 1)} 4`;
+  const colours = ["#e8323f", "#f2c14e", "#3fb36a", "#4f8de0", "#f07fb0"];
+  const per = 5; let out = `<path class="wire" d="${d}"/>`; let n = 0;
+  for (let i = 0; i < swags; i++) {
+    for (let k = 1; k <= per; k++) {
+      const t = k / (per + 1), x0 = seg * i, x = x0 + seg * t;
+      const y = (1 - t) * (1 - t) * 4 + 2 * (1 - t) * t * (4 + sag * 2) + t * t * 4;
+      const c = colours[n % colours.length];
+      out += `<rect class="cap" x="${x - 2.5}" y="${y}" width="5" height="4" rx="1"/>`
+           + `<ellipse class="bulb" cx="${x}" cy="${y + 10}" rx="4.2" ry="6.5" fill="${c}" style="filter:drop-shadow(0 0 5px ${c});animation-delay:${((n * 0.37) % 2.6).toFixed(2)}s"/>`;
+      n++;
+    }
+  }
+  svg.innerHTML = out;
+}
+drawLights();
+window.addEventListener("resize", drawLights);
+
+// ---------- Snow ----------
+(function snow() {
+  const cv = $("snow"); const ctx = cv.getContext && cv.getContext("2d"); if (!ctx) return;
+  let W = 0, H = 0, flakes = [];
+  const size = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.round(Math.min(90, W * H / 6000));
+    flakes = Array.from({ length: count }, () => ({ x: Math.random() * W, y: Math.random() * H, r: 0.8 + Math.random() * 2.2, s: 0.3 + Math.random() * 0.8, d: Math.random() * Math.PI * 2 }));
+  };
+  const draw = () => {
+    ctx.clearRect(0, 0, W, H); ctx.fillStyle = "rgba(255,255,255,.85)";
+    for (const f of flakes) { ctx.globalAlpha = 0.35 + f.r / 4; ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2); ctx.fill(); }
+    ctx.globalAlpha = 1;
+  };
+  const step = () => {
+    for (const f of flakes) { f.y += f.s; f.d += 0.01; f.x += Math.sin(f.d) * 0.3; if (f.y > H + 4) { f.y = -4; f.x = Math.random() * W; } }
+    draw(); if (!document.hidden) requestAnimationFrame(step);
+  };
+  size(); draw();
+  window.addEventListener("resize", () => { size(); draw(); });
+  if (!reduceMotion) { requestAnimationFrame(step); document.addEventListener("visibilitychange", () => { if (!document.hidden) requestAnimationFrame(step); }); }
 })();
 
 // ---------- Talking to the sheet ----------
@@ -231,7 +334,7 @@ function renderChips() {
 }
 function renderNotices() {
   const out = [];
-  if (S.view === "all") out.push(`<div class="notice"><strong>Full list.</strong> This shows everything, including gifts already bought, so it may spoil a surprise.</div>`);
+  if (S.view === "all") out.push(`<div class="notice"><strong>No peeking!</strong> The full list shows gifts that have already been bought, so it may spoil a surprise.</div>`);
   if (S.error === "setup") out.push(`<div class="notice"><strong>Not connected yet.</strong> This page still needs the Google Sheet's web address.</div>`);
   if (S.error === "load") out.push(`<div class="notice">Can't reach the list right now. Check your connection. <button data-act="retry">Try again</button></div>`);
   $("notices").innerHTML = out.join("");
@@ -239,7 +342,7 @@ function renderNotices() {
 function editorHtml(key, item) {
   const id = item ? "r" + item.row : "new-" + key;
   return `<form class="editor" data-key="${key}" ${item ? `data-row="${item.row}"` : ""}>
-    <div class="field"><label for="t-${id}">Gift</label><input id="t-${id}" name="gift" maxlength="140" required value="${esc(item?.gift)}" placeholder="e.g. Waterproof walking jacket"></div>
+    <div class="field"><label for="t-${id}">Gift</label><input id="t-${id}" name="gift" maxlength="140" required value="${esc(item?.gift)}" placeholder="e.g. Fluffy slippers"></div>
     <div class="field"><label for="n-${id}">Details</label><textarea id="n-${id}" name="details" maxlength="500" rows="2" placeholder="Size, colour, price or shop">${esc(item?.details)}</textarea></div>
     <div class="field"><label for="l-${id}">Link</label><input id="l-${id}" name="link" type="text" inputmode="url" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="800" value="${esc(item?.link)}" placeholder="https://"></div>
     <div class="row">
@@ -254,7 +357,7 @@ function itemHtml(it) {
   const link = safeUrl(it.link);
   const meta = [];
   if (link) meta.push(`<a href="${esc(link)}" target="_blank" rel="noopener noreferrer">${esc(hostOf(link))} ↗</a>`);
-  if (it.bought) meta.push(`<span class="badge">Bought</span>`);
+  if (it.bought) meta.push(`<span class="badge">Bought and hidden</span>`);
   const label = it.bought ? `Untick ${it.gift}` : `Mark ${it.gift} as bought`;
   return `<li class="item${it.bought ? " bought" : ""}${S.busy.has(it.row) ? " saving" : ""}">
     <button class="tick" data-act="tick" data-row="${it.row}" aria-label="${esc(label)}" aria-pressed="${!!it.bought}">${CHECK}</button>
@@ -270,17 +373,17 @@ function itemHtml(it) {
 function sectionHtml(p) {
   const list = itemsFor(p.key), left = list.filter(i => !i.bought).length, shown = visible(list);
   let count = "";
-  if (S.loaded) count = list.length === 0 ? "No ideas yet" : left === 0 ? "All bought" : `${left} left${S.view === "all" ? ` of ${list.length}` : ""}`;
+  if (S.loaded) count = list.length === 0 ? "No ideas yet" : left === 0 ? "All wrapped up" : `${left} left${S.view === "all" ? ` of ${list.length}` : ""}`;
   let body = "";
   if (S.loaded) {
     body = shown.length
-      ? `<ul class="items">${shown.map(itemHtml).join("")}</ul>`
-      : `<ul class="items"><li class="empty">${esc(list.length === 0 ? `Nothing on ${p.name}'s list yet.` : `Everything on ${p.name}'s list has been bought.`)}</li></ul>`;
+      ? `<div class="parcel"><ul class="items">${shown.map(itemHtml).join("")}</ul></div>`
+      : `<div class="parcel"><div class="empty">${list.length === 0 ? GIFT : STAR}<span>${esc(list.length === 0 ? `Nothing on ${p.name}'s list yet.` : `Everything on ${p.name}'s list has been bought.`)}</span></div></div>`;
   }
   const addUi = !S.loaded ? "" : S.adding === p.key ? editorHtml(p.key, null)
     : `<button class="add" data-act="add" data-key="${p.key}" style="--c:var(--p-${p.key})"><span class="plus">+</span> Add to ${esc(p.name)}'s list</button>`;
   return `<section class="person" aria-labelledby="h-${p.key}">
-    <div class="tag-head"><h2 class="tag" id="h-${p.key}" style="--c:var(--p-${p.key})">${esc(p.name)}</h2><span class="count">${esc(count)}</span></div>
+    <div class="tag-head"><h2 class="tag" id="h-${p.key}"><span class="swatch" style="--c:var(--p-${p.key})"></span>${esc(p.name)}</h2><span class="count">${esc(count)}</span></div>
     ${body}${addUi}
   </section>`;
 }
@@ -292,13 +395,13 @@ function render() {
   const people = S.who === "all" ? PEOPLE : PEOPLE.filter(p => p.key === S.who);
   $("main").innerHTML = S.loaded ? people.map(sectionHtml).join("")
     : S.error ? "" : `<div class="status">Loading the list…</div>`;
-  $("footer").textContent = S.updated ? `Updated ${S.updated.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}. The list refreshes by itself.` : "";
+  $("footer").innerHTML = S.updated ? `${STAR}<span>Updated ${esc(S.updated.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }))}. The list refreshes by itself.</span>` : "";
 }
 
 let toastTimer = null;
 function toast(text, undo) {
   const t = $("toast");
-  t.innerHTML = `<span>${esc(text)}</span>${undo ? `<button id="toast-undo">Undo</button>` : ""}`;
+  t.innerHTML = `${GIFT}<span>${esc(text)}</span>${undo ? `<button id="toast-undo">Undo</button>` : ""}`;
   t.hidden = false;
   if (undo) $("toast-undo").onclick = () => { t.hidden = true; undo(); };
   clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 6000);
@@ -326,7 +429,7 @@ document.addEventListener("click", async (e) => {
   if (b.dataset.who) {
     S.who = b.dataset.who;
     try { localStorage.setItem("xmas-who", S.who); } catch {}
-    render(); window.scrollTo({ top: 0 }); return;
+    render(); return;
   }
   const act = b.dataset.act; if (!act) return;
   const row = Number(b.dataset.row);
