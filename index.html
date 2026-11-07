@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Our Christmas List</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#eef2ee">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='12' width='24' height='17' rx='2' fill='%23a8233a'/%3E%3Crect x='2' y='8' width='28' height='6' rx='2' fill='%23c43a50'/%3E%3Crect x='14' y='8' width='4' height='21' fill='%23d8ae55'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one narrow column of gift-tag sections, a sticky view switch, inline editing. */
+:root {
+  --bg: #eef2ee; --surface: #ffffff; --ink: #1b2a23; --muted: #5b6b63; --line: #d6dfd8;
+  --accent: #a8233a; --accent-ink: #ffffff; --gold: #a87b22; --soft: #e3ebe5; --done: #2f6b4f;
+  --p-tim: #2f6b4f; --p-sue: #7a3f74; --p-lucy: #b0313f; --p-james: #2c5a8c; --p-albie: #a2741b;
+  --shadow: 0 1px 2px rgba(27,42,35,.06), 0 4px 14px rgba(27,42,35,.05);
+  --font-display: "Young Serif", Georgia, "Times New Roman", serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1713; --surface: #16211c; --ink: #e6ede8; --muted: #98aaa1; --line: #2a3832;
+    --accent: #e0596d; --accent-ink: #1a0d10; --gold: #d8ae55; --soft: #1d2a24; --done: #6fbf94;
+    --p-tim: #6fbf94; --p-sue: #c88cc1; --p-lucy: #ec7a86; --p-james: #7fb0e3; --p-albie: #dcb15a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.25);
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+}
+[hidden] { display: none !important; }
+.wrap { max-width: 640px; margin: 0 auto; }
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+header.top { padding-block: 32px 8px; display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); font-variant-numeric: tabular-nums; }
+h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(32px, 8vw, 44px); line-height: 1.05; margin: 0; text-wrap: balance; }
+.lede { margin: 4px 0 0; color: var(--muted); max-width: 52ch; }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-block: 12px; display: grid; gap: 10px; border-bottom: 1px solid var(--line); }
+.seg { display: inline-grid; grid-template-columns: 1fr 1fr; background: var(--soft); border-radius: 999px; padding: 3px; width: 100%; max-width: 360px; }
+.seg button { border: 0; background: transparent; border-radius: 999px; padding: 8px 12px; font-weight: 600; font-size: 14px; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+.chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 500; display: inline-flex; gap: 6px; align-items: center; }
+.chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--muted)); }
+.chip[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+.chip .n { font-variant-numeric: tabular-nums; opacity: .7; font-size: 13px; }
+
+.notice { margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: var(--soft); color: var(--muted); font-size: 14px; }
+.notice strong { color: var(--ink); font-weight: 600; }
+.notice button { border: 0; background: transparent; color: var(--accent); font-weight: 700; padding: 0 4px; }
+
+main { display: grid; gap: 28px; padding-top: 24px; }
+section.person { display: grid; gap: 10px; }
+.tag-head { display: flex; align-items: center; gap: 12px; }
+.tag { --c: var(--muted); position: relative; display: inline-flex; align-items: center; background: var(--c); color: var(--bg); font-family: var(--font-display); font-weight: 400; font-size: 22px; line-height: 1; margin: 0; padding: 8px 16px 9px 30px; clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 50%); border-radius: 0 6px 6px 0; }
+.tag::before { content: ""; position: absolute; left: 13px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--bg); }
+.count { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+
+ul.items { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+li.item { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: start; padding: 12px 12px 12px 14px; border-top: 1px solid var(--line); }
+li.item:first-child { border-top: 0; }
+.tick { width: 26px; height: 26px; margin-top: 1px; border-radius: 7px; border: 2px solid var(--line); background: var(--surface); display: grid; place-items: center; padding: 0; transition: border-color .15s, background .15s; }
+.tick:hover { border-color: var(--done); }
+.tick svg { width: 14px; height: 14px; stroke: var(--bg); opacity: 0; }
+.item.bought .tick { background: var(--done); border-color: var(--done); }
+.item.bought .tick svg { opacity: 1; }
+.item.saving { opacity: .6; }
+.body { min-width: 0; display: grid; gap: 2px; }
+.title { font-weight: 600; overflow-wrap: anywhere; }
+.item.bought .title { text-decoration: line-through; text-decoration-color: var(--muted); color: var(--muted); }
+.note { color: var(--muted); font-size: 14px; overflow-wrap: anywhere; white-space: pre-line; }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; font-size: 13px; margin-top: 2px; }
+.meta a { color: var(--accent); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+.meta a:hover { text-decoration: underline; }
+.badge { font-size: 12px; font-weight: 600; color: var(--done); letter-spacing: .02em; }
+.more { border: 0; background: transparent; color: var(--muted); padding: 4px 6px; border-radius: 6px; font-size: 13px; font-weight: 600; }
+.more:hover { background: var(--soft); color: var(--ink); }
+.empty { padding: 16px 14px; color: var(--muted); font-size: 14px; }
+
+.add { justify-self: start; border: 1px dashed var(--line); background: transparent; color: var(--ink); border-radius: 10px; padding: 9px 14px; font-weight: 600; font-size: 14px; display: inline-flex; gap: 8px; align-items: center; }
+.add:hover { border-color: var(--c, var(--accent)); color: var(--c, var(--accent)); }
+.add .plus { font-size: 18px; line-height: 1; }
+
+form.editor { display: grid; gap: 10px; padding: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+li.item form.editor { grid-column: 1 / -1; border: 0; box-shadow: none; padding: 0; background: transparent; }
+.field { display: grid; gap: 4px; }
+.field label { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.field input, .field textarea { width: 100%; border: 1px solid var(--line); background: var(--bg); border-radius: 8px; padding: 9px 10px; font-size: 16px; }
+.field textarea { resize: vertical; min-height: 44px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.btn { border: 0; border-radius: 8px; padding: 9px 16px; font-weight: 600; font-size: 14px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.btn.ghost { background: var(--soft); color: var(--ink); }
+.btn.danger { background: transparent; color: var(--accent); padding-inline: 8px; margin-left: auto; }
+.confirm { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; }
+.confirm .btn.danger { margin-left: 0; }
+
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--bg); border-radius: 12px; padding: 10px 10px 10px 16px; display: flex; gap: 12px; align-items: center; font-size: 14px; box-shadow: var(--shadow); max-width: calc(100% - 32px); z-index: 20; }
+.toast button { border: 0; background: transparent; color: var(--gold); font-weight: 700; padding: 6px 8px; border-radius: 6px; }
+.status { padding: 24px 0; color: var(--muted); text-align: center; }
+footer { margin-top: 40px; color: var(--muted); font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow" id="countdown">Christmas 2026</div>
+    <h1>Our Christmas List</h1>
+    <p class="lede">Tick a gift once you've bought it. It drops off the list for everyone, so nobody buys the same thing twice.</p>
+  </header>
+
+  <div class="bar">
+    <div class="seg" role="group" aria-label="Which gifts to show">
+      <button id="view-left" aria-pressed="true">Still to buy</button>
+      <button id="view-all" aria-pressed="false">Full list</button>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Whose list"></div>
+  </div>
+
+  <div id="notices"></div>
+  <main id="main"><div class="status">Loading the list…</div></main>
+  <footer id="footer"></footer>
+</div>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script>
+// The Google Sheet's web app address (Apps Script → Deploy → Web app URL).
+const API_URL = "";
+
+const PEOPLE = [
+  { key: "tim", name: "Tim" }, { key: "sue", name: "Sue" }, { key: "lucy", name: "Lucy" },
+  { key: "james", name: "James" }, { key: "albie", name: "Albie" },
+];
+const S = {
+  items: [], loaded: false, error: null, updated: null,
+  view: "left", who: "all", busy: new Set(),
+  adding: null, editing: null, confirmDel: null,
+};
+let pendingRender = false;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const safeUrl = (u) => { try { const x = new URL(String(u).trim()); return /^https?:$/.test(x.protocol) ? x.href : ""; } catch { return ""; } };
+const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return "link"; } };
+const keyOf = (name) => String(name || "").trim().toLowerCase();
+const nameOf = (key) => (PEOPLE.find(p => p.key === key) || {}).name || key;
+const CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>';
+
+try { const v = localStorage.getItem("xmas-view"); if (v === "all" || v === "left") S.view = v; } catch {}
+try { const w = localStorage.getItem("xmas-who"); if (w && (w === "all" || PEOPLE.some(p => p.key === w))) S.who = w; } catch {}
+
+(function countdown() {
+  const now = new Date(); const xmas = new Date(now.getFullYear(), 11, 25);
+  const days = Math.round((xmas - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / 86400000);
+  const el = $("countdown");
+  if (days > 1) el.textContent = `${days} days to Christmas`;
+  else if (days === 1) el.textContent = "Christmas Eve";
+  else if (days === 0) el.textContent = "Happy Christmas";
+  else el.textContent = `Christmas ${now.getFullYear()}`;
+})();
+
+// ---------- Talking to the sheet ----------
+async function api(body) {
+  const opts = body
+    ? { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body) }
+    : { method: "GET" };
+  const url = body ? API_URL : API_URL + (API_URL.includes("?") ? "&" : "?") + "t=" + Date.now();
+  const res = await fetch(url, { ...opts, redirect: "follow", cache: "no-store" });
+  if (!res.ok) throw new Error("network");
+  const data = await res.json();
+  if (data.error) { const e = new Error(data.error); e.server = true; throw e; }
+  return data;
+}
+function accept(data) {
+  S.items = (data.items || []).map(it => ({ ...it, key: keyOf(it.person) }));
+  S.updated = new Date(); S.loaded = true; S.error = null;
+  render();
+}
+let loading = false;
+async function load(quiet) {
+  if (!API_URL) { S.error = "setup"; render(); return; }
+  if (loading) return; loading = true;
+  try { accept(await api()); }
+  catch (e) { if (!quiet || !S.loaded) { S.error = "load"; render(); } }
+  finally { loading = false; }
+}
+async function send(body, okMsg, undo) {
+  try {
+    accept(await api(body));
+    if (okMsg) toast(okMsg, undo);
+    return true;
+  } catch (e) {
+    if (e.server && e.message === "changed") { toast("Someone else just changed the list. It's been refreshed, so try again."); load(); }
+    else if (e.server) toast(e.message);
+    else toast("That didn't save. Check your connection and try again.");
+    render();
+    return false;
+  }
+}
+
+// ---------- Rendering ----------
+const itemsFor = (key) => S.items.filter(i => i.key === key);
+const visible = (list) => S.view === "all" ? list : list.filter(i => !i.bought);
+
+function renderChips() {
+  const all = [{ key: "all", name: "Everyone" }, ...PEOPLE];
+  $("chips").innerHTML = all.map(p => {
+    const n = p.key === "all" ? S.items.filter(i => !i.bought).length : itemsFor(p.key).filter(i => !i.bought).length;
+    const dot = p.key === "all" ? "" : `<span class="dot" style="--c:var(--p-${p.key})"></span>`;
+    return `<button class="chip" data-who="${p.key}" aria-pressed="${S.who === p.key}">${dot}${esc(p.name)}${S.loaded ? ` <span class="n">${n}</span>` : ""}</button>`;
+  }).join("");
+  $("view-left").setAttribute("aria-pressed", S.view === "left");
+  $("view-all").setAttribute("aria-pressed", S.view === "all");
+}
+function renderNotices() {
+  const out = [];
+  if (S.view === "all") out.push(`<div class="notice"><strong>Full list.</strong> This shows everything, including gifts already bought, so it may spoil a surprise.</div>`);
+  if (S.error === "setup") out.push(`<div class="notice"><strong>Not connected yet.</strong> This page still needs the Google Sheet's web address.</div>`);
+  if (S.error === "load") out.push(`<div class="notice">Can't reach the list right now. Check your connection. <button data-act="retry">Try again</button></div>`);
+  $("notices").innerHTML = out.join("");
+}
+function editorHtml(key, item) {
+  const id = item ? "r" + item.row : "new-" + key;
+  return `<form class="editor" data-key="${key}" ${item ? `data-row="${item.row}"` : ""}>
+    <div class="field"><label for="t-${id}">Gift</label><input id="t-${id}" name="gift" maxlength="140" required value="${esc(item?.gift)}" placeholder="e.g. Waterproof walking jacket"></div>
+    <div class="field"><label for="n-${id}">Details</label><textarea id="n-${id}" name="details" maxlength="500" rows="2" placeholder="Size, colour, price or shop">${esc(item?.details)}</textarea></div>
+    <div class="field"><label for="l-${id}">Link</label><input id="l-${id}" name="link" type="text" inputmode="url" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="800" value="${esc(item?.link)}" placeholder="https://"></div>
+    <div class="row">
+      <button class="btn primary" type="submit">${item ? "Save" : "Add to list"}</button>
+      <button class="btn ghost" type="button" data-act="cancel">Cancel</button>
+      ${item ? `<button class="btn danger" type="button" data-act="ask-del" data-row="${item.row}">Remove</button>` : ""}
+    </div>
+  </form>`;
+}
+function itemHtml(it) {
+  if (S.editing === it.row) return `<li class="item">${editorHtml(it.key, it)}</li>`;
+  const link = safeUrl(it.link);
+  const meta = [];
+  if (link) meta.push(`<a href="${esc(link)}" target="_blank" rel="noopener noreferrer">${esc(hostOf(link))} ↗</a>`);
+  if (it.bought) meta.push(`<span class="badge">Bought</span>`);
+  const label = it.bought ? `Untick ${it.gift}` : `Mark ${it.gift} as bought`;
+  return `<li class="item${it.bought ? " bought" : ""}${S.busy.has(it.row) ? " saving" : ""}">
+    <button class="tick" data-act="tick" data-row="${it.row}" aria-label="${esc(label)}" aria-pressed="${!!it.bought}">${CHECK}</button>
+    <div class="body">
+      <div class="title">${esc(it.gift)}</div>
+      ${it.details ? `<div class="note">${esc(it.details)}</div>` : ""}
+      ${meta.length ? `<div class="meta">${meta.join("")}</div>` : ""}
+    </div>
+    <button class="more" data-act="edit" data-row="${it.row}" aria-label="Edit ${esc(it.gift)}">Edit</button>
+    ${S.confirmDel === it.row ? `<div class="confirm">Remove “${esc(it.gift)}” from the list? <button class="btn danger" data-act="del" data-row="${it.row}">Remove</button><button class="btn ghost" data-act="cancel-del">Keep it</button></div>` : ""}
+  </li>`;
+}
+function sectionHtml(p) {
+  const list = itemsFor(p.key), left = list.filter(i => !i.bought).length, shown = visible(list);
+  let count = "";
+  if (S.loaded) count = list.length === 0 ? "No ideas yet" : left === 0 ? "All bought" : `${left} left${S.view === "all" ? ` of ${list.length}` : ""}`;
+  let body = "";
+  if (S.loaded) {
+    body = shown.length
+      ? `<ul class="items">${shown.map(itemHtml).join("")}</ul>`
+      : `<ul class="items"><li class="empty">${esc(list.length === 0 ? `Nothing on ${p.name}'s list yet.` : `Everything on ${p.name}'s list has been bought.`)}</li></ul>`;
+  }
+  const addUi = !S.loaded ? "" : S.adding === p.key ? editorHtml(p.key, null)
+    : `<button class="add" data-act="add" data-key="${p.key}" style="--c:var(--p-${p.key})"><span class="plus">+</span> Add to ${esc(p.name)}'s list</button>`;
+  return `<section class="person" aria-labelledby="h-${p.key}">
+    <div class="tag-head"><h2 class="tag" id="h-${p.key}" style="--c:var(--p-${p.key})">${esc(p.name)}</h2><span class="count">${esc(count)}</span></div>
+    ${body}${addUi}
+  </section>`;
+}
+function render() {
+  const ae = document.activeElement;
+  if (ae && ae.closest && ae.closest("form.editor") && /INPUT|TEXTAREA/.test(ae.tagName)) { pendingRender = true; renderChips(); return; }
+  pendingRender = false;
+  renderChips(); renderNotices();
+  const people = S.who === "all" ? PEOPLE : PEOPLE.filter(p => p.key === S.who);
+  $("main").innerHTML = S.loaded ? people.map(sectionHtml).join("")
+    : S.error ? "" : `<div class="status">Loading the list…</div>`;
+  $("footer").textContent = S.updated ? `Updated ${S.updated.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}. The list refreshes by itself.` : "";
+}
+
+let toastTimer = null;
+function toast(text, undo) {
+  const t = $("toast");
+  t.innerHTML = `<span>${esc(text)}</span>${undo ? `<button id="toast-undo">Undo</button>` : ""}`;
+  t.hidden = false;
+  if (undo) $("toast-undo").onclick = () => { t.hidden = true; undo(); };
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, 6000);
+}
+
+// ---------- Actions ----------
+async function setBought(row, bought) {
+  const it = S.items.find(i => i.row === row); if (!it) return;
+  const prev = it.bought; it.bought = bought; S.busy.add(row); render();
+  const ok = await send({ action: "bought", row, gift: it.gift, bought },
+    bought ? `Ticked off “${it.gift}”` : `“${it.gift}” is back on the list`,
+    bought ? () => setBought(row, false) : null);
+  S.busy.delete(row);
+  if (!ok) { const again = S.items.find(i => i.row === row && i.gift === it.gift); if (again) again.bought = prev; }
+  render();
+}
+
+document.addEventListener("click", async (e) => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.id === "view-left" || b.id === "view-all") {
+    S.view = b.id === "view-all" ? "all" : "left";
+    try { localStorage.setItem("xmas-view", S.view); } catch {}
+    render(); return;
+  }
+  if (b.dataset.who) {
+    S.who = b.dataset.who;
+    try { localStorage.setItem("xmas-who", S.who); } catch {}
+    render(); window.scrollTo({ top: 0 }); return;
+  }
+  const act = b.dataset.act; if (!act) return;
+  const row = Number(b.dataset.row);
+  if (act === "retry") load();
+  else if (act === "tick") { if (!S.busy.has(row)) { const it = S.items.find(i => i.row === row); if (it) setBought(row, !it.bought); } }
+  else if (act === "add") { S.adding = b.dataset.key; S.editing = S.confirmDel = null; render(); document.querySelector(`form[data-key="${b.dataset.key}"]:not([data-row]) input`)?.focus(); }
+  else if (act === "edit") { S.editing = row; S.adding = S.confirmDel = null; render(); document.querySelector(`form[data-row="${row}"] input`)?.focus(); }
+  else if (act === "cancel") { S.adding = S.editing = null; document.activeElement?.blur(); render(); }
+  else if (act === "ask-del") { S.editing = null; S.confirmDel = row; document.activeElement?.blur(); render(); }
+  else if (act === "cancel-del") { S.confirmDel = null; render(); }
+  else if (act === "del") {
+    const it = S.items.find(i => i.row === row); S.confirmDel = null; if (!it) return;
+    S.busy.add(row); render();
+    const copy = { action: "add", person: it.person, gift: it.gift, details: it.details, link: it.link, bought: it.bought };
+    await send({ action: "remove", row, gift: it.gift }, `Removed “${it.gift}”`, () => send(copy, `“${it.gift}” is back`));
+    S.busy.delete(row); render();
+  }
+});
+
+document.addEventListener("submit", async (e) => {
+  const f = e.target.closest("form.editor"); if (!f) return;
+  e.preventDefault();
+  const gift = f.gift.value.trim(); if (!gift) { f.gift.focus(); return; }
+  const details = f.details.value.trim();
+  let link = f.link.value.trim();
+  if (link && !/^https?:\/\//i.test(link)) link = "https://" + link;
+  link = link ? safeUrl(link) : "";
+  const key = f.dataset.key, row = Number(f.dataset.row);
+  f.querySelectorAll("button").forEach(x => x.disabled = true);
+  document.activeElement?.blur();
+  if (row) {
+    const it = S.items.find(i => i.row === row);
+    if (await send({ action: "edit", row, original: it ? it.gift : "", gift, details, link }, "Saved")) S.editing = null;
+  } else {
+    if (await send({ action: "add", person: nameOf(key), gift, details, link }, `Added to ${nameOf(key)}'s list`)) S.adding = null;
+  }
+  render();
+});
+document.addEventListener("focusout", () => setTimeout(() => {
+  const ae = document.activeElement;
+  if (!(ae && ae.closest && ae.closest("form.editor")) && pendingRender) render();
+}, 0));
+
+// Keep the list fresh while it's open.
+setInterval(() => { if (!document.hidden && !S.adding && !S.editing && !S.busy.size) load(true); }, 30000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) load(true); });
+
+render();
+load();
+</script>
+</body>
+</html>
